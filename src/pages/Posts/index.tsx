@@ -25,7 +25,6 @@ const Home = () => {
   const {
     isLoading,
     isError,
-    isFetching,
     refetch: fetchPostsData,
   } = useFetchPosts(pagePosts);
 
@@ -55,13 +54,11 @@ const Home = () => {
   return (
     <Container maxWidth="md" sx={{ mt: 4, pb: 4 }}>
       <Stack spacing={3}>
-        {isLoading ? (
+        {posts.length === 0 && isLoading ? (
           <Box textAlign="center">
             <CircularProgress />
             <Typography>Loading posts ...</Typography>
           </Box>
-        ) : posts.length === 0 ? (
-          <Typography>No posts available</Typography>
         ) : (
           <>
             {posts.map((post) => (
@@ -71,9 +68,9 @@ const Home = () => {
               <Button
                 variant="contained"
                 onClick={handleLoadMore}
-                disabled={isFetching || isLoading || posts?.length >= 100}
+                disabled={isLoading || posts?.length >= 100}
               >
-                {isFetching ? "Loading..." : "Load More"}
+                {isLoading ? "Loading..." : "Load More"}
               </Button>
             </Box>
           </>

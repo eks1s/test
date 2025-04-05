@@ -10,7 +10,7 @@ export const useFetchPosts = (page: number) => {
     queryKey: ["posts", page],
     queryFn: async ({ signal }) => {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=1`,
+        `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=5`,
         { signal }
       );
       if (!response.ok) {

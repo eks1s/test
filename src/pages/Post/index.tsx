@@ -58,7 +58,7 @@ const Post = () => {
               {data?.body}
             </Typography>
             <Typography variant="caption" display="block" mt={2}>
-              Автор ID: {data?.userId}
+              Author ID: {data?.userId}
             </Typography>
             <Button
               variant="contained"
