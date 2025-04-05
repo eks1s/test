@@ -8,9 +8,10 @@ export const useFetchPosts = (page: number) => {
 
   return useQuery<Post[], Error>({
     queryKey: ["posts", page],
-    queryFn: async () => {
+    queryFn: async ({ signal }) => {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
+        `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=1`,
+        { signal }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch posts");
@@ -19,6 +20,7 @@ export const useFetchPosts = (page: number) => {
       dispatch(setPosts(data));
       return data;
     },
+    enabled: false,
   });
 };
 
